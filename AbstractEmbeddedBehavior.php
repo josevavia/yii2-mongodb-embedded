@@ -136,6 +136,12 @@ abstract class AbstractEmbeddedBehavior extends Behavior
                     $this->fakeAttribute,
                     Yii::t('yii', '{attribute} is invalid.', ['attribute' => $this->owner->getAttributeLabel($this->fakeAttribute)])
                 );
+
+				foreach ($this->storage->errors as $attribute => $error) {
+					foreach ($error as $oneError) {
+						$this->owner->addError($attribute, $oneError);
+					}
+				};
             }
         }
     }
